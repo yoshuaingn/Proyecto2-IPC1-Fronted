@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cargar Usuarios</title>
+ 
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	   <link rel="stylesheet" href="estilos.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+	
+</head>
+<body>
+
+
+
+	<input type="file" id="upload-csv" accept=".csv">
+	<button class="boton_1" id="btn-upload-csv">Ver y Guardar</button>
+	
+	<style type="text/css">
+		.boton_1{
+		  text-decoration: none;
+		  padding: 3px;
+		  padding-left: 10px;
+		  padding-right: 10px;
+		  font-family: helvetica;
+		  font-weight: 300;
+		  font-size: 25px;
+		  font-style: italic;
+		  color: #006505;
+		  background-color: #82b085;
+		  border-radius: 15px;
+		  border: 3px double #006505;
+		}
+		.boton_1:hover{
+		  opacity: 0.6;
+		  text-decoration: none;
+		}
+	  </style>
+	<table id="tbl-data">
+							
+	</table>
+
+
+
+	
+	<script type="text/javascript">
+	
+
+		//Agregando validaciones de  cors para que no suframos
+		let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('Access-Control-Allow-Origin', 'http:/127.0.0.1:5000');       
+        headers.append('Access-Control-Allow-Credentials', 'true');
+        headers.append('GET', 'POST', 'OPTIONS');
+
+		let btn_upload = document.getElementById('btn-upload-csv').addEventListener('click', ()=> {
+
+          
+
+
+			Papa.parse(document.getElementById('upload-csv').files[0], {
+				download: true,
+				header: false,
+				
+				complete: function(results) {
+									
+ //--------------------------Botones de cabezera-----------------------------------------------------
+ 	              						
+		
+
+					//btn_Regresar
+					document.write('<button class="boton_1" onClick="regresar()">Regresar</button>')
+					
+														
+document.write('<style type="text/css">.boton_1{text-decoration: none;padding: 3px;padding-left: 10px;padding-right: 10px;font-family: helvetica;font-weight: 300;font-size: 25px;font-style: italic;color: #006505;background-color: #82b085;border-radius: 15px;border: 3px double #006505;}.boton_1:hover{opacity: 0.6;text-decoration: none;}</style>')         
+					document.write('<script>')
+									
+		document.write('function regresar(){')       //boton 4(Regresar)
+        document.write('window.location.href="../UsuarioRegistradoAdmin.html"')
+		document.write('}')
+
+
+					//-----------------------------------------
+				
+					document.write('<'+'/'+'script>') 
+//---------------------------------------------------------------------------------------------
+					document.write('<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">');
+                    document.write('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >')
+                    document.write('<link rel="stylesheet" href="estilos.css">') 				
+					document.write("<table border=\"1\"");	
+					results.data.map((data, index)=>{	 //index=filas, data=dato1,dato2,dato3...,dato_n
+					     document.write("<tr>");
+						 document.write("<td>"+data[0]+"</td>");
+						 document.write("<td>"+data[1]+"</td>");
+						 document.write("<td>"+data[2]+"</td>");
+						 document.write("<td>"+data[3]+"</td>");
+						 document.write("<td>"+data[4]+"</td>");						 
+						 document.write("<tr>");
+							fetch('http:/127.0.0.1:5000/matriz1', {
+  			            	method: 'POST',
+  				            headers: headers,
+  				            body: `{
+    				        "d0":"${data[0]}",
+        			        "d1":"${data[1]}",
+							"d2":"${data[2]}",
+							"d3":"${data[3]}",
+							"d4":"${data[4]}",
+							"d5":"${data[5]}",
+							"d6":"${data[6]}",
+							"d7":"${data[7]}"
+                             }`,
+				})				      			 						
+					});					
+					document.write("</table>");
+					window.location.hash="no-back-button";
+       window.location.hash="Again-No-back-button";//esta linea es necesaria para chrome
+        window.onhashchange=function(){window.location.hash="no-back-button";}
+					
+				}						
+			});
+		});
+
+	
+
+	</script>
+
+
+
+
+
+</body>
+
+</html>

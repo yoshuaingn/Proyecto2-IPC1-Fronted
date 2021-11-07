@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Cargar Usuarios</title>
+	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
+	<link rel="stylesheet" href="estilos.css"> 
+</head>
+<body>							              						                 					
+		
+		<script>
+		let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        headers.append('Accept', 'application/json');
+        headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');       
+        headers.append('Access-Control-Allow-Credentials', 'true');
+        headers.append('GET', 'POST', 'OPTIONS');
+
+	
+			fetch('http://localhost:5000/verTablita')
+			.then(response => response.json())
+			.then(data => {
+			 console.log(data.length) //numero de filas(nosotros luego le restamos 1 porque la ultima fila no la quiero)
+			// document.body.innerHTML += "<div><button id='b1'>Nuevo Botón</button></div>";
+             console.log(data)
+			 //console.log(data[0].id)
+
+			 //---------------------------para abajo empiezo a escribir todo el codigo-------------
+			 
+
+         document.write('<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">') 	
+         document.write('<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >')  	
+		 document.write('<link rel="stylesheet" href="estilos.css">')    
+
+		   document.write('<button class="boton_1" onClick="ejecuta()">Generar Pdf</button>')              												             									
+		   document.write('<button class="boton_1" onClick="elimina()">Eliminar User</button>')                
+	       document.write('<button class="boton_1" onClick="regresar()">Regresar</button>')              								 
+		   document.write('<style type="text/css">.boton_1{text-decoration: none;padding: 3px;padding-left: 10px;padding-right: 10px;font-family: helvetica;font-weight: 300;font-size: 25px;font-style: italic;color: #006505;background-color: #82b085;border-radius: 15px;border: 3px double #006505;}.boton_1:hover{opacity: 0.6;text-decoration: none;}</style>')              
+		   document.write('<h1>Tabla de Usuarios<h1>') //titulo de la pagina
+        document.write('<script>')	
+
+	    document.write('function ejecuta(){')		//boton1
+		document.write('fetch(\'http://localhost:5000/pdf1\')')       
+		document.write('.then(response => response.json())')		
+		document.write('.then(data => {  if(data[\'data\']=="true"){alert(\'PDF de Users Generado Exitosamente en Descargas.\')} });}')							
+		
+		   
+
+		document.write('function elimina(){')	  //boton2	
+		document.write('var username=prompt("Escriba el username:","username");')	
+		document.write('if (username != null){')				 
+		document.write('fetch(\'http://localhost:5000/idappE1\', {method: \'POST\', headers: headers,body: `{"username":"${username}" }`, })')		
+		document.write('.then(response => response.json())')     
+		document.write('.then(data => { if (data.data=="true"){alert("Éxito al eliminar el user indicado"); window.location.href="Usuarios.html";}else{ alert("el username no existe o es un admin")}})}}')	
+        
+		
+
+
+
+
+		document.write('function regresar(){')       //boton 3(Regresar)
+        document.write('window.location.href="../index/UsuarioRegistradoAdmin.html"')
+		document.write('}')
+
+
+
+
+		document.write('<'+'/'+'script>')		
+		
+
+			 document.write("<table border=\"1\">")
+			for (let i = 0; i < data.length-1; i++) {		
+				document.write("<tr>")			
+					document.write("<td>"+data[i].nombre+"</td>"); //1)nombre
+					document.write("<td>"+data[i].genero+"</td>"); //2)genero
+					document.write("<td>"+data[i].username+"</td>"); //3)username	
+					document.write("<td>"+data[i].contra+"</td>"); //4)contraseña
+					document.write("<td>"+data[i].correo+"</td>"); //5)correo						  				
+					document.write("</tr>");
+            }
+			document.write("</table>");
+
+		
+		
+
+			});
+			
+		</script>	
+			
+							
+			
+</body>
+
+</html>
