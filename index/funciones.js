@@ -2,7 +2,7 @@
 let headers = new Headers()
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
-headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+headers.append('Access-Control-Allow-Origin', 'https://proyecto2-ipc1-fronted.herokuapp.com');
 headers.append('Access-Control-Allow-Credentials', 'true');
 headers.append('GET', 'POST', 'OPTIONS') ;
 
@@ -20,7 +20,7 @@ function CrearUsuario(){
         return
     }
     //Aca realizamos la peticion
-    fetch('http://localhost:5000/registrar',
+    fetch('https://proyecto2-ipc1-fronted.herokuapp.com/registrar',
     {
         method:'POST',
         headers,
@@ -73,7 +73,7 @@ function IniciarSesion(){
     let username = document.getElementById("username");
     let contra = document.getElementById("contra");
 
-    fetch('http://localhost:5000//login',{
+    fetch('https://proyecto2-ipc1-fronted.herokuapp.com/login',{
         method: 'POST',
   				headers: headers,
   				body: `{

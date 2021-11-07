@@ -12,12 +12,12 @@
 		let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
-        headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');       
+        headers.append('Access-Control-Allow-Origin', 'https://proyecto2-ipc1-fronted.herokuapp.com');       
         headers.append('Access-Control-Allow-Credentials', 'true');
         headers.append('GET', 'POST', 'OPTIONS');
 
 	
-			fetch('http://localhost:5000/verTablita')
+			fetch('https://proyecto2-ipc1-fronted.herokuapp.com/verTablita')
 			.then(response => response.json())
 			.then(data => {
 			 console.log(data.length) //numero de filas(nosotros luego le restamos 1 porque la ultima fila no la quiero)
@@ -40,7 +40,7 @@
         document.write('<script>')	
 
 	    document.write('function ejecuta(){')		//boton1
-		document.write('fetch(\'http://localhost:5000/pdf1\')')       
+		document.write('fetch(\'https://proyecto2-ipc1-fronted.herokuapp.com/pdf1\')')       
 		document.write('.then(response => response.json())')		
 		document.write('.then(data => {  if(data[\'data\']=="true"){alert(\'PDF de Users Generado Exitosamente en Descargas.\')} });}')							
 		
@@ -49,7 +49,7 @@
 		document.write('function elimina(){')	  //boton2	
 		document.write('var username=prompt("Escriba el username:","username");')	
 		document.write('if (username != null){')				 
-		document.write('fetch(\'http://localhost:5000/idappE1\', {method: \'POST\', headers: headers,body: `{"username":"${username}" }`, })')		
+		document.write('fetch(\'https://proyecto2-ipc1-fronted.herokuapp.com/idappE1\', {method: \'POST\', headers: headers,body: `{"username":"${username}" }`, })')		
 		document.write('.then(response => response.json())')     
 		document.write('.then(data => { if (data.data=="true"){alert("Éxito al eliminar el user indicado"); window.location.href="Usuarios.html";}else{ alert("el username no existe o es un admin")}})}}')	
         
