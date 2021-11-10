@@ -12,12 +12,12 @@
 		let headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
-        headers.append('Access-Control-Allow-Origin', 'https://proyecto2-ipc1-backend.herokuapp.com/');       
+        headers.append('Access-Control-Allow-Origin', 'https://mateguat.herokuapp.com/');       
         headers.append('Access-Control-Allow-Credentials', 'true');
         headers.append('GET', 'POST', 'OPTIONS');
 
 	
-			fetch('https://proyecto2-ipc1-backend.herokuapp.com/verTablita')
+			fetch('https://mateguat.herokuapp.com/verTablita')
 			.then(response => response.json())
 			.then(data => {
 			 console.log(data.length) //numero de filas(nosotros luego le restamos 1 porque la ultima fila no la quiero)
@@ -40,7 +40,7 @@
         document.write('<script>')	
 
 	    document.write('function ejecuta(){')		//boton1
-		document.write('fetch(\'https://proyecto2-ipc1-backend.herokuapp.com/pdf1\')')       
+		document.write('fetch(\'https://https://mateguat.herokuapp.com/pdf1\')')       
 		document.write('.then(response => response.json())')		
 		document.write('.then(data => {  if(data[\'data\']=="true"){alert(\'PDF de Users Generado Exitosamente en Descargas.\')} });}')							
 		
