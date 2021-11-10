@@ -2,7 +2,7 @@
 let headers = new Headers()
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
-headers.append('Access-Control-Allow-Origin', 'https://proyecto2-ipc1-backend.herokuapp.com/');
+headers.append('Access-Control-Allow-Origin', 'https://mateguat.herokuapp.com/');
 headers.append('Access-Control-Allow-Credentials', 'true');
 headers.append('GET', 'POST', 'OPTIONS') ;
 
@@ -20,7 +20,7 @@ function CrearUsuario(){
         return
     }
     //Aca realizamos la peticion
-    fetch('https://proyecto2-ipc1-backend.herokuapp.com/registrar',
+    fetch('https://mateguat.herokuapp.com/registrar',
     {
         method:'POST',
         headers,
@@ -73,7 +73,7 @@ function IniciarSesion(){
     let username = document.getElementById("username");
     let contra = document.getElementById("contra");
 
-    fetch('https://proyecto2-ipc1-backend.herokuapp.com/login',{
+    fetch('https://mateguat.herokuapp.com/login',{
         method: 'POST',
   				headers: headers,
   				body: `{
